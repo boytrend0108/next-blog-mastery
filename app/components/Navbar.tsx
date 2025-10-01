@@ -22,11 +22,18 @@ export const Navbar: React.FC<Props> = async (props) => {
             <>
               <Link href='/startup/create'>Create</Link>
 
-              <button onClick={() => signOut()}>
-                <Link href='/startup/create'>Create</Link>
+              <form
+                className='cursor-pointer'
+                action={async () => {
+                  'use server';
 
-                <span>Sign Out</span>
-              </button>
+                  await signOut();
+                }}
+              >
+                <button type='submit' className='cursor-pointer'>
+                  Sign Out
+                </button>
+              </form>
 
               <Link href={`/user/${session.user.id}`}>
                 <span>{session.user.name}</span>
@@ -41,7 +48,10 @@ export const Navbar: React.FC<Props> = async (props) => {
                 await signIn('github');
               }}
             >
-              <button type='submit'>Sign In</button>
+              ~
+              <button type='submit' className='cursor-pointer'>
+                Sign In
+              </button>
             </form>
           )}
         </div>
