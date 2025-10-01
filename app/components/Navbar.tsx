@@ -27,11 +27,11 @@ export const Navbar: React.FC<Props> = async (props) => {
                 action={async () => {
                   'use server';
 
-                  await signOut();
+                  await signOut({ redirectTo: '/' });
                 }}
               >
-                <button type='submit' className='cursor-pointer'>
-                  Sign Out
+                <button type='submit' className='cursor-pointer text-secondary'>
+                  Logout
                 </button>
               </form>
 
@@ -50,7 +50,7 @@ export const Navbar: React.FC<Props> = async (props) => {
             >
               ~
               <button type='submit' className='cursor-pointer'>
-                Sign In
+                Login
               </button>
             </form>
           )}
