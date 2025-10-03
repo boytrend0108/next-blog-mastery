@@ -30,7 +30,10 @@ export const Navbar: React.FC<Props> = async (props) => {
                   await signOut({ redirectTo: '/' });
                 }}
               >
-                <button type='submit' className='cursor-pointer text-secondary'>
+                <button
+                  type='submit'
+                  className='cursor-pointer text-secondary font-work-sans'
+                >
                   Logout
                 </button>
               </form>

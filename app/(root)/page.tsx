@@ -1,3 +1,5 @@
+import { SearchForm } from '../../components/SearchForm';
+
 export default function Home() {
   console.log('Hello, Next.js!');
 
@@ -13,6 +15,8 @@ export default function Home() {
           Submit Ideas, Vote on Pitches, and Get Noticed in Virtual
           Competitions.
         </p>
+
+        <SearchForm />
       </section>
     </div>
   );
