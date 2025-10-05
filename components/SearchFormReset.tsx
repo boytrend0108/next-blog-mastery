@@ -2,6 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import { X } from 'lucide-react';
+import Link from 'next/link';
 
 interface Props {
   className?: string;
@@ -10,19 +11,11 @@ interface Props {
 export const SearchFormReset: React.FC<Props> = (props) => {
   const { className, ...otherProps } = props;
 
-  const reset = () => {
-    const form = document.querySelector('.search-form') as HTMLFormElement;
-
-    if (form) {
-      form.reset();
-    }
-  };
-
   return (
     <div className={cn('search-btn', className)} {...otherProps}>
-      <button className='search-button' onClick={reset}>
+      <Link href='/'>
         <X className='size-5' />
-      </button>
+      </Link>
     </div>
   );
 };

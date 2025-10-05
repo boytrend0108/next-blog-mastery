@@ -12,8 +12,11 @@ export default async function Home(props: {
 }) {
   const searchParams = await props.searchParams;
   const query = searchParams.query;
+  const params = { search: query || null };
 
-  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY });
+  console.log('query', query);
+
+  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
 
   return (
     <div>
@@ -28,7 +31,7 @@ export default async function Home(props: {
           Competitions.
         </p>
 
-        <SearchForm />
+        <SearchForm query={query} />
       </section>
 
       <section className='section_container'>
