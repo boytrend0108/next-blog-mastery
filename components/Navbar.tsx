@@ -51,7 +51,6 @@ export const Navbar: React.FC<Props> = async (props) => {
                 await signIn('github');
               }}
             >
-              ~
               <button type='submit' className='cursor-pointer'>
                 Login
               </button>
