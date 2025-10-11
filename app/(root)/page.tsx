@@ -38,7 +38,7 @@ export default async function Home(props: { searchParams: SearchParams }) {
         <ul className='mt-t card_grid'>
           {posts?.length > 0 ? (
             posts.map((post: StartupTypeCard) => (
-              <StartupCard key={post?._id} post={post} params={searchParams} />
+              <StartupCard key={post?._id} post={post} />
             ))
           ) : (
             <p className='no-results'>No startups found</p>

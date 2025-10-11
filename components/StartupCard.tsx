@@ -5,17 +5,13 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Author, Startup } from '@/sanity/types';
 import { headers } from 'next/headers';
+import { Skeleton } from './ui/skeleton';
 
 // import { Skeleton } from '@/components/ui/skeleton';
 
 export type StartupTypeCard = Omit<Startup, 'author'> & { author?: Author };
 
-const StartupCard = async ({
-  post,
-}: {
-  post: StartupTypeCard;
-  params: Promise<{ slug: string }>;
-}) => {
+const StartupCard = async ({ post }: { post: StartupTypeCard }) => {
   const {
     _createdAt,
     views,
@@ -85,14 +81,14 @@ const StartupCard = async ({
   );
 };
 
-// export const StartupCardSkeleton = () => (
-//   <>
-//     {[0, 1, 2, 3, 4].map((index: number) => (
-//       <li key={cn('skeleton', index)}>
-//         <Skeleton className='startup-card_skeleton' />
-//       </li>
-//     ))}
-//   </>
-// );
+export const StartupCardSkeleton = () => (
+  <>
+    {[0, 1, 2, 3, 4].map((index: number) => (
+      <li key={cn('skeleton', index)}>
+        <Skeleton className='startup-card_skeleton' />
+      </li>
+    ))}
+  </>
+);
 
 export default StartupCard;
