@@ -7,18 +7,12 @@ import { auth } from '@/auth';
 type Params = Promise<{ slug: string }>;
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
-export default async function Home(props: {
-  params: Params;
-  searchParams: SearchParams;
-}) {
+export default async function Home(props: { searchParams: SearchParams }) {
   const searchParams = await props.searchParams;
   const query = searchParams.query;
   const params = { search: query || null };
 
-  console.log('query', query);
-
   const session = await auth();
-  console.log('session', session);
 
   const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
 
@@ -44,7 +38,7 @@ export default async function Home(props: {
         <ul className='mt-t card_grid'>
           {posts?.length > 0 ? (
             posts.map((post: StartupTypeCard) => (
-              <StartupCard key={post?._id} post={post} />
+              <StartupCard key={post?._id} post={post} params={searchParams} />
             ))
           ) : (
             <p className='no-results'>No startups found</p>

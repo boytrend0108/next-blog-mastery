@@ -4,11 +4,18 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Author, Startup } from '@/sanity/types';
+import { headers } from 'next/headers';
+
 // import { Skeleton } from '@/components/ui/skeleton';
 
 export type StartupTypeCard = Omit<Startup, 'author'> & { author?: Author };
 
-const StartupCard = ({ post }: { post: StartupTypeCard }) => {
+const StartupCard = async ({
+  post,
+}: {
+  post: StartupTypeCard;
+  params: Promise<{ slug: string }>;
+}) => {
   const {
     _createdAt,
     views,
@@ -19,6 +26,11 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
     image,
     description,
   } = post;
+
+  const headersList = await headers();
+  const domain = headersList.get('host');
+  const fullUrl = headersList.get('x-forwarded-proto') + '://' + domain;
+  console.log('full-url', fullUrl);
 
   return (
     <li className='startup-card group text-black'>
@@ -45,8 +57,8 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
 
         <Link href={`/user/${author?._id}`}>
           <Image
-            src={author?.image!}
-            alt={author?.name!}
+            src={author?.image! || `${fullUrl}/no-image.jpg`}
+            alt={author?.name! || 'author'}
             width={48}
             height={48}
             className='rounded-full'
